@@ -2,6 +2,12 @@
 
 รูปแบบตาม [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) และใช้ [Semantic Versioning](https://semver.org/)
 
+## [1.0.1] - 2026-11-24
+
+### Fixed
+
+- กด `⌃Space` เปลี่ยนภาษาเองกลางคำ แล้วแอปลืมส่วนต้นของคำ เช่น พิมพ์ "ไม่รู" แล้วเปลี่ยนเป็น EN ก่อนพิมพ์ "้ว่า" จะได้ `ไม่รูh;jk` ตอนนี้แอปจำทั้งคำและแก้เป็น "ไม่รู้ว่า" ให้
+
 ## [1.0.0] - 2026-11-24
 
 เวอร์ชันแรก
@@ -18,4 +24,5 @@
 - แอป universal (Apple silicon + Intel) รองรับ macOS 13 ขึ้นไป
 - ชุดทดสอบ `--selftest` รันอัตโนมัติทุกครั้งที่ build
 
+[1.0.1]: https://github.com/PongsakornNaklang/AutoTH/releases/tag/v1.0.1
 [1.0.0]: https://github.com/PongsakornNaklang/AutoTH/releases/tag/v1.0.0

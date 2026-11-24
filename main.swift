@@ -240,6 +240,9 @@ let callback: CGEventTapCallBack = { _, type, event, _ in
         return nil
     }
     if !event.flags.intersection([.maskCommand, .maskControl, .maskAlternate]).isEmpty || resetKeys.contains(code) {
+        // ⌃Space / ⌃⌥Space = the user switching layout by hand. The caret didn't move: keep the word, so
+        // "ไม่รู" + switch + "h;jk" is still seen as one word (ไม่รู้ว่า) and can be fixed.
+        if code == 49 && event.flags.contains(.maskControl) && !event.flags.contains(.maskCommand) { return .passUnretained(event) }
         reset(); undo = nil; return .passUnretained(event)
     }
     if code == 51 { if !keys.isEmpty { keys.removeLast() }; undo = nil; return .passUnretained(event) }
@@ -287,7 +290,7 @@ func selfTest() -> Int32 {
         }
         return decide(en: EN.text(ks), th: TH.text(ks), current: cur, final: true) ?? cur
     }
-    let thai = "สวัสดี ครับ ค่ะ ขอบคุณ วันนี้ กินข้าว ไปไหน ทำงาน ไม่ได้ อะไร เท่าไหร่ ภาษาไทย แล้ว เพราะ เป็น อยู่ ที่ไหน พรุ่งนี้ เมื่อวาน กรุงเทพ โทรศัพท์ ประชุม น้ำ ข้าว รัก มาก เลย เรื่อง เขา ใจดี ไม่ใช่ หิว นอน ผม ไหม ความรัก ขอโทษ เดี๋ยว ตอนนี้"
+    let thai = "สวัสดี ครับ ค่ะ ขอบคุณ วันนี้ กินข้าว ไปไหน ทำงาน ไม่ได้ อะไร เท่าไหร่ ภาษาไทย แล้ว เพราะ เป็น อยู่ ที่ไหน พรุ่งนี้ เมื่อวาน กรุงเทพ โทรศัพท์ ประชุม น้ำ ข้าว รัก มาก เลย เรื่อง เขา ใจดี ไม่ใช่ หิว นอน ผม ไหม ความรัก ขอโทษ เดี๋ยว ตอนนี้ ไม่รู้ว่า"
     let english = "hello the work world thanks meeting please today computer keyboard language because should would people time good make with have this that from about where there yes okay"
     let stayEnglish = "recieve teh wrok thier langauge keybaord becuase adn form hte waht jsut btn cfg npm git ssh http json figma redis xcode mongodb supabase prisma claude lazada canva"
     var fails: [String] = []

@@ -17,7 +17,7 @@ cat > AutoTH.app/Contents/Info.plist <<PLIST
 <key>CFBundleName</key><string>AutoTH</string>
 <key>CFBundleExecutable</key><string>AutoTH</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>1.0.0</string>
+<key>CFBundleShortVersionString</key><string>1.0.1</string>
 <key>LSMinimumSystemVersion</key><string>13.0</string>
 <key>LSUIElement</key><true/>
 </dict></plist>
